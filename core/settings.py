@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower == "true"
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
@@ -88,7 +88,8 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
   }
 }
-database_url = os.environ.get("DATABASE_URL")
+database_url = os.environ.get("DATABASES_URL")
+
 DATABASES["default"] = dj_database_url.parse(database_url)
 
 # postgresql://upmtechnologies_user:r5sQ7Nz6p7Z0ouSu0GVbSF566SvGynd3@dpg-cqi9t1ogph6c738lqt5g-a.oregon-postgres.render.com/upmtechnologies
