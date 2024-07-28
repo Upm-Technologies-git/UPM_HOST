@@ -51,7 +51,7 @@ def r404(request):
     return render(request, "404.html")
 
 def web(request):
-    return render(request, "webT.html")
+    return render(request, "WebT.html")
 
 def poster(request):
     return render(request, "posterT.html")
