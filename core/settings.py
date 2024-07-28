@@ -22,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = "django-insecure-s2%v*6*fq4p4k8w+(s!+w2_iv@*8^)uacaa7o^*p*ox(@g%zrt"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = ["*"]
 
 EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
 EMAIL_HOST_USER = 'be5df99ccadd89'
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "upm",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -88,9 +89,7 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
   }
 }
-database_url = os.environ.get("DATABASES_URL")
 
-DATABASES["default"] = dj_database_url.parse(database_url)
 
 # postgresql://upmtechnologies_user:r5sQ7Nz6p7Z0ouSu0GVbSF566SvGynd3@dpg-cqi9t1ogph6c738lqt5g-a.oregon-postgres.render.com/upmtechnologies
 # Password validation
@@ -136,4 +135,16 @@ MEDIA_URL = 'media/'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+AWS_ACCESS_KEY_ID = 'AKIAQE3ROXBLUUB77LVB'
 
+AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_STORAGE_BUCKET_NAME = 'upm-webhost-bkt' 
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_FILE_OVERWRITE = False
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
